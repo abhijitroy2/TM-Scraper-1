@@ -40,6 +40,8 @@ Thumbs.db
 # Project specific
 output/*.xlsx
 !output/.gitkeep
+logs/
+*.log
 
 # Environment variables
 .env

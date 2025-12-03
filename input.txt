@@ -1,1 +1,1 @@
-https://www.trademe.co.nz/a/property/residential/sale/canterbury/christchurch-city/search?land_area_min=0.025&price_min=1000&bedrooms_min=3&bedrooms_max=6&sort_order=expirydesc&property_type=house&property_type=section&price_max=500000
+https://www.trademe.co.nz/a/property/residential/sale/search?price_max=450000&bedrooms_min=3&land_area_min=0.075
