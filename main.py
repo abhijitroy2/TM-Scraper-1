@@ -77,13 +77,14 @@ class ListingScraper:
                 return pd.DataFrame()
         return pd.DataFrame()
     
-    def _save_listings_to_excel(self, listings: List[Dict], url: str):
+    def _save_listings_to_excel(self, listings: List[Dict], url: str, append: bool = False):
         """
-        Save listings to Excel file, appending to existing data.
+        Save listings to Excel file, overwriting or appending to existing data.
         
         Args:
             listings: List of listing dictionaries
             url: The URL these listings came from
+            append: If True, append to existing data; if False, overwrite (default: False)
         """
         if not listings:
             print(f"No listings found for {url}")
@@ -91,16 +92,18 @@ class ListingScraper:
         
         filepath = self._get_excel_filepath(url)
         
-        # Load existing data
-        existing_df = self._load_existing_data(filepath)
-        
         # Create DataFrame from new listings
         new_df = pd.DataFrame(listings, columns=self.COLUMNS)
         
-        # Append new data to existing data
-        if not existing_df.empty:
-            combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+        if append:
+            # Load existing data and append
+            existing_df = self._load_existing_data(filepath)
+            if not existing_df.empty:
+                combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+            else:
+                combined_df = new_df
         else:
+            # Overwrite existing data
             combined_df = new_df
         
         # Save to Excel
